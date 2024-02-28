@@ -43,6 +43,8 @@ export const renderHorizSections = (props: horizSectionPropTypes) => {
     yAxisIndicesColor,
 
     hideOrigin,
+    originLabelContainerStyle,
+    originLabelStyle,
     hideYAxisText,
     yAxisTextNumberOfLines,
     yAxisTextStyle,
@@ -203,6 +205,15 @@ export const renderHorizSections = (props: horizSectionPropTypes) => {
       ) {
         label = '';
       }
+
+
+      let customOriginContainerStyle = {};
+      let customOriginLabelStyle = {}
+      if (!secondaryYAxisConfig.hideOrigin && index === horizSections.length - 1) {
+        customOriginContainerStyle = originLabelContainerStyle;
+        customOriginLabelStyle = originLabelStyle;
+      }
+
       return (
         <View
           key={index}
@@ -221,6 +232,7 @@ export const renderHorizSections = (props: horizSectionPropTypes) => {
               height: secondaryYAxisConfig.stepHeight ?? 0,
             },
             yAxisLabelContainerStyle,
+            customOriginContainerStyle,
           ]}>
           {secondaryYAxisConfig.showYAxisIndices && index !== 0 ? (
             <View
@@ -236,7 +248,7 @@ export const renderHorizSections = (props: horizSectionPropTypes) => {
           <Text
             numberOfLines={secondaryYAxisConfig.yAxisTextNumberOfLines}
             ellipsizeMode={'clip'}
-            style={[secondaryYAxisConfig.yAxisTextStyle]}>
+            style={[secondaryYAxisConfig.yAxisTextStyle, customOriginLabelStyle]}>
             {label}
           </Text>
         </View>
@@ -392,6 +404,23 @@ export const renderHorizSections = (props: horizSectionPropTypes) => {
                   if (hideOrigin && index === horizSections.length - 1) {
                     label = '';
                   }
+
+                  let customOriginContainerStyle = {};
+                  let customOriginTextStyle ={};
+                  if (!hideOrigin && index === horizSections.length - 1) {
+                    console.log({
+                      originLabelStyle
+                    })
+                    customOriginContainerStyle = {
+                      ...(originLabelContainerStyle || {}),
+                      top: stepHeight * index + yAxisExtraHeightAtTop + (stepHeight / 4),
+                    };
+                    customOriginTextStyle = {
+                      marginBottom: 0,
+                      ...(originLabelStyle || {}),
+                    };
+                  }
+
                   return (
                     <View
                       key={index}
@@ -421,6 +450,7 @@ export const renderHorizSections = (props: horizSectionPropTypes) => {
                             ],
                           },
                         yAxisLabelContainerStyle,
+                        customOriginContainerStyle,
                       ]}>
                       <Text
                         numberOfLines={yAxisTextNumberOfLines}
@@ -439,6 +469,7 @@ export const renderHorizSections = (props: horizSectionPropTypes) => {
                           index === noOfSections && {
                             marginBottom: stepHeight / -2,
                           },
+                          customOriginTextStyle,
                         ]}>
                         {label}
                       </Text>

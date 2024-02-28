@@ -303,6 +303,8 @@ The properties of this line chart can be controlled using the `lineConfig` prop 
 | rotateLabel                    | boolean                   | To rotate the X axis labels (by 60deg)                                                                         | false                        |
 | hideAxesAndRules               | boolean                   | To hide axes, rules, labels altogether                                                                         | false                        |
 | hideOrigin                     | boolean                   | To hide the y Axis label at origin (i.e. 0)                                                                    | false                        |
+| originLabelContainerStyle      | any                       | Props to customize Origin container style                                                                 | undefine                     |
+| originLabelStyle               | any                       | Props to customize Origin Label style                                                                 | undefine                     |
 | labelWidth                     | number                    | Width of the Label text appearing below the bar (under the X axis)                                             | barWidth                     |
 | xAxisTextNumberOfLines         | number                    | Number of lines for x axis label text                                                                          | 1                            |
 | xAxisLabelsHeight              | number                    | Height of X axis labels container                                                                              | xAxisTextNumberOfLines \* 18 |

@@ -24,7 +24,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
-    "gifted-charts-core": "^0.0.21"
+    "gifted-charts-core": "eflashcards/gifted-charts-core#feat/origin-style"
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",
